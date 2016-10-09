@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang=zh>
+
+<head>
+    <meta charset="utf-8">
+    <title>留言板</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="Header">
+        <span class="title">
+            <h1>留言板</h1>
+        </span>
+    </div>
+
+    <div class="contatiner">
+        <form class="MessageForm" name="MessageForm" method="POST">
+            {% csrf_token %}
+            <label>留言者</label>
+            <input class="form-control" name="author" />
+            <label>內容</label>
+            <textarea class="form-control" rows="4" cols="80" name="content"></textarea>
+            <button type="submit" class="btn btn-common">提交</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div class="pastmessages">
+        {% for m in msg %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <span class="message">{{ m.content }}</span>
+                </div>
+                <div class="panel-footer">
+                    <span class="name">by {{ m.author }} </span>
+                    <span class="time">at {{ m.pub_time }}</span>
+                </div>
+            </div>
+        {% empty %}
+            <h3>尚無留言</h3>
+        {% endfor %}
+    </div>
+</body>
