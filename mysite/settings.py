@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Taipei'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# This line doesn't exist in the beginning
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
